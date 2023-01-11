@@ -1,0 +1,11 @@
+const express = require("express");
+const { route } = require("express/lib/application");
+const router = express.Router();
+const { registeruser, authuser,alluser } = require("../controllers/userController");
+const {Cloudinary} = require("../controllers/cloudinaryController");
+const { protect } = require("../middleware/authMiddleware");
+router.post("/register", registeruser);
+router.post("/login", authuser);
+router.post("/pics",Cloudinary);
+router.get("/",protect,  alluser);
+module.exports = router;
